@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minuit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="helpers.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./img/Logo.png">
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container header-container">
+            <h1>
+                <img src="./img/Logo.png" alt="logo">
+                Minuit <br>
+                l'heure du Touit
+            </h1>
+        </div>
+    </header>
+    <main id=main-content>
+        <div class="container touiteur-container">
+            <form id="touit-form">
+                <label for="pseudo">Pseudo:</label>
+                <input type="text" id="pseudo" name="pseudo" maxlength="16" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" maxlength="256" required></textarea>
+
+                <button type="submit">Envoyer Touit</button>
+            </form>
+
+            <div class="touits-container" id="touits-container">
+                <div class="touit" id="touit">
+
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
