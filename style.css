@@ -14,7 +14,7 @@ h1 {
   gap: 2rem;
   text-align: center;
   background-color: rgba(0, 0, 0, 0.7);
-  border-radius: 10%;
+  border-radius: 25px;
   color: rgb(255, 255, 255);
   font-weight: 700;
   font-family: "Pixelify Sans", sans-serif;
@@ -41,11 +41,52 @@ body {
 
 form {
   display: grid;
-  grid-template-columns: 1fr, 2fr, 1fr, 2fr;
-  background-color: red;
-  width: 20rem;
-  opacity: 0.7;
+  grid-template-rows: repeat(3, 1fr);
+  row-gap: 5px;
+  height: 50vh;
   font-family: "Pixelify Sans", sans-serif;
+}
+
+.pseudo-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pseudo-form label {
+  border: 2px solid white;
+  margin: 10px;
+  padding: 5px;
+  color: yellow;
+  font-size: 2rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: yellow;
+}
+
+.message-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+}
+
+.message-form label {
+  padding: 5px;
+  margin: 10px;
+  border: 2px solid white;
+  color: yellow;
+  font-size: 2rem;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+button {
+  grid-row: 3/4;
+  color: yellow;
+  font-size: 2rem;
+  background-color: rgba(0, 0, 0);
+  border-radius: 50px;
 }
 
 .touit-container {
@@ -53,7 +94,6 @@ form {
   width: 30vw;
   height: 80vh;
   gap: 10px;
-  opacity: 0.7;
   display: flex;
   flex-direction: column-reverse;
   justify-content: flex-end;
@@ -61,6 +101,5 @@ form {
 
 .touit {
   color: white;
-  opacity: 1;
   border: 2px solid whitesmoke;
 }

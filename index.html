@@ -27,13 +27,16 @@
     <main id=main-content>
         <div class="container touiteur-container">
             <form id="touit-form">
-                <label for="pseudo">Pseudo:</label>
-                <input type="text" id="pseudo" name="pseudo" maxlength="16" required>
+                <div class="pseudo-form"> <label for="pseudo">Pseudo:</label>
+                    <input type="text" id="pseudo" name="pseudo" maxlength="16" required>
+                </div>
 
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" maxlength="256" required></textarea>
+                <div class="message-form"> <label for="message">Message:</label>
+                    <textarea id="message" name="message" maxlength="256" required></textarea>
+                </div>
 
-                <button type="submit">Envoyer Touit</button>
+
+                <button id="form-btn" type="button">Envoyer Touit</button>
             </form>
 
             <div class="touit-container" id="touit-container">
