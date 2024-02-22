@@ -2,51 +2,51 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minuit</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="helpers.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="./img/Logo.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minuit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="helpers.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="./img/Logo.png">
 </head>
 
 <body>
-    <header class="main-header">
-        <div class="container header-container">
-            <h1>
-                <img src="./img/Logo.png" alt="logo">
-                Minuit <br>
-                l'heure du Touit
-            </h1>
+  <header class="main-header">
+    <div class="container header-container">
+      <h1>
+        <img src="./img/Logo.png" alt="logo">
+        Minuit <br>
+        l'heure du Touit
+      </h1>
+    </div>
+  </header>
+  <main id=main-content>
+    <div class="container touiteur-container">
+      <form id="touit-form">
+        <div class="pseudo-form"> <label for="pseudo">Pseudo:</label>
+          <input type="text" id="pseudo" name="pseudo" maxlength="16" required>
         </div>
-    </header>
-    <main id=main-content>
-        <div class="container touiteur-container">
-            <form id="touit-form">
-                <div class="pseudo-form"> <label for="pseudo">Pseudo:</label>
-                    <input type="text" id="pseudo" name="pseudo" maxlength="16" required>
-                </div>
 
-                <div class="message-form"> <label for="message">Message:</label>
-                    <textarea id="message" name="message" maxlength="256" required></textarea>
-                </div>
-
-
-                <button id="form-btn" type="button">Envoyer Touit</button>
-            </form>
-
-            <div class="touit-container" id="touit-container">
-                <div class="touit" id="touit">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, optio?</p>
-                </div>
-            </div>
+        <div class="message-form"> <label for="message">Message:</label>
+          <textarea id="message" name="message" maxlength="256" required></textarea>
         </div>
-    </main>
-    <script src="script.js"></script>
+
+
+        <button id="form-btn" type="button">Envoyer Touit</button>
+      </form>
+
+      <div class="touit-container" id="touit-container">
+        <div class="touit" id="touit">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, optio?</p>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="script.js"></script>
 </body>
 
 </html>
