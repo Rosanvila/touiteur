@@ -14,16 +14,18 @@
 const touitteur = document.querySelector("#touit");
 const touitContainer = document.querySelector("#touit-container");
 
-const addTouit = () => {
+const addTouit = (name, message) => {
   const nextTouit = document.createElement("div");
-  newTouit.className = "touit";
+  nextTouit.className = "touit";
 
-  const NewTouitContent = document.createElement("p");
-  NewTouitContent.textContent = "Bonjour";
+  const newTouitContent = document.createElement("p");
+  newTouitContent.textContent = `${name}: ${message}`;
 
-  nextTouit.appendChild(NewTouitContent);
-  touitContainer.appendChild(newTouit);
+  nextTouit.appendChild(newTouitContent);
+  touitContainer.appendChild(nextTouit);
 };
+
+addTouit("Robin", "Yo la team");
 
 const sendTouit = document.querySelector("#message");
 const user = document.querySelector("#pseudo");
