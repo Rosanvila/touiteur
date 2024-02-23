@@ -11,28 +11,39 @@
 // }
 // });
 
-const touitteur = document.querySelector("#touit");
-const touitContainer = document.querySelector("#touit-container");
+/*********************ENVOIE DE TOUITT*****************/
+const touitContainer = document.getElementById("touit-container");
+const touitTemplate = document.getElementById("touit-template");
 
-const addTouit = (name, message) => {
-  const nextTouit = document.createElement("div");
-  nextTouit.className = "touit";
+const getMessage = new XMLHttpRequest();
+getMessage.open("GET", "https://touiteur.cefim-formation.org/list", true);
 
-  const newTouitContent = document.createElement("p");
-  newTouitContent.textContent = `${name}: ${message}`;
-
-  nextTouit.appendChild(newTouitContent);
-  touitContainer.appendChild(nextTouit);
-};
-
-addTouit("Robin", "Yo la team");
-
-const sendTouit = document.querySelector("#message");
-const user = document.querySelector("#pseudo");
-const btnForm = document.querySelector("#form-btn");
-
-btnForm.addEventListener("click", () => {
-  const userName = user.value + " : ";
-  const touitNew = sendTouit.value;
-  console.log(userName, touitNew);
+getMessage.addEventListener("readystatechange", () => {
+  if (getMessage.readyState === XMLHttpRequest.DONE) {
+    if (getMessage.status === 200) {
+      const response = JSON.parse(getMessage.responseText);
+      console.log(response);
+      
+        response.messages.forEach((touit) => {
+          const addTouit = (name, message) => {
+            const nextTouit = touitTemplate.content.cloneNode(true);
+            const newTouitContent = nextTouit.querySelector(".touit");
+            newTouitContent.textContent = `${name}: ${message}`;
+            touitContainer.appendChild(nextTouit);
+          };
+          addTouit(touit.name, touit.message);
+        });
+      
+      } else {
+        console.error("Erreur !");
+    }
+  }
 });
+
+getMessage.send();
+
+// btnForm.addEventListener("click", () => {
+//   const userName = user.value + " : ";
+//   const newMessage = message.value;
+//   console.log(userName, newMessage);
+// });
