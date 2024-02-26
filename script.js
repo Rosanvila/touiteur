@@ -11,7 +11,7 @@
 // }
 // });
 
-/*********************ENVOIE DE TOUITT*****************/
+/*********************RECUP DE TOUITT*****************/
 const touitContainer = document.getElementById("touit-container");
 const touitTemplate = document.getElementById("touit-template");
 
@@ -42,12 +42,33 @@ getMessage.send();
 
 /****************ENVOIE DE TOUIT***************************/
 /*********************************************************/
-const name = document.querySelector("#name")
-const message = document.querySelector("#message")
-const btnForm = document.querySelector("#form-btn")
+const nameTouittos = document.querySelector("#name");
+const message = document.querySelector("#message");
+const btnForm = document.querySelector("#form-btn");
+
+const sendMessage = new XMLHttpRequest();
+sendMessage.open("POST", "https://touiteur.cefim-formation.org/send", true);
+
+sendMessage.addEventListener("readystatechange", () => {
+  if (sendMessage.readyState === XMLHttpRequest.DONE) {
+    if (sendMessage.status === 200) {
+      const response = JSON.parse(sendMessage.responseText);
+      console.log(response);
+    }
+  }
+});
 
 btnForm.addEventListener("click", () => {
-  const userName = name.value + " : ";
+  const userName = nameTouittos.value + " ";
   const newMessage = message.value;
-  console.log(userName, newMessage);
+
+  const data = new URLSearchParams();
+  data.append("name", userName);
+  data.append("message", newMessage);
+
+  sendMessage.setRequestHeader(
+    "Content-Type",
+    "application/x-www-form-urlencoded"
+  );
+  sendMessage.send(data);
 });
