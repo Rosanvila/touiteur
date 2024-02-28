@@ -27,10 +27,11 @@ h1 img {
 }
 
 body {
-  background-image: url(./img/Plan_de-travail\ 1.jpg);
+  background-image: url(../img/Plan_de-travail\ 1.jpg);
   background-size: cover;
   background-position: center;
 }
+
 
 .touiteur-container {
   display: grid;
@@ -42,7 +43,7 @@ body {
 form {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
-  row-gap: 5px;
+  row-gap: 30px;
   height: 50vh;
   font-family: "Pixelify Sans", sans-serif;
 }
@@ -64,6 +65,12 @@ form {
   box-shadow: yellow;
 }
 
+.name-form input {
+  background-color: rgb(25, 25, 25);
+  color: whitesmoke;
+  font-size: 1.5rem;
+}
+
 .message-form {
   display: flex;
   justify-content: center;
@@ -78,28 +85,53 @@ form {
   border: 2px solid white;
   color: yellow;
   font-size: 2rem;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(25, 25, 25, 0.8);
+}
+
+.message-form textarea {
+  resize: none;
+  background-color: rgb(25, 25, 25);
+  color: whitesmoke;
+  font-size: 1.5rem;
 }
 
 button {
   grid-row: 3/4;
   color: yellow;
   font-size: 2rem;
-  background-color: rgba(0, 0, 0);
+  background-color: rgba(25, 25, 25);
   border-radius: 50px;
 }
 
+
 .touit-container {
-  width: 30vw;
-  height: 80vh;
-  gap: 10px;
+  max-height: 500px; 
+  min-height: 200px; 
+  width: 30rem;
+  gap: 20px;
   display: flex;
-  flex-direction: column-reverse;
-  justify-content: flex-end;
+  flex-direction: column; 
+  overflow-y: auto;
+}
+
+.like {
+  width: 3rem;
+  padding-inline: 5px;
+  cursor: pointer;
+}
+
+.touit-likes {
+  display: flex;
+  flex-direction: row;
 }
 
 .touit {
+  display: flex;
+  flex-direction: column;
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 1.5rem;
   color: white;
   border: 2px solid whitesmoke;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(25, 25, 25);
+  padding: 1rem;
 }

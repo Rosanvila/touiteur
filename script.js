@@ -25,14 +25,23 @@ fetch("https://touiteur.cefim-formation.org/list")
   .then((data) => {
     console.log(data);
 
-    data.messages.forEach((touit) => {
-      const addTouit = (name, message) => {
+    const messagesOrder = data.messages
+      .sort((a, b) => b.ts - a.ts)
+      .slice(0, 10);
+
+    messagesOrder.forEach((touit) => {
+      addTouit = (name, message, likes) => {
         const nextTouit = touitTemplate.content.cloneNode(true);
         const newTouitContent = nextTouit.querySelector(".touit");
+        const likeImg = nextTouit.querySelector("#touit-likes");
+        const nbrLikes = nextTouit.querySelector("#nbr-likes");
+        nbrLikes.textContent = `${likes}`;
+
         newTouitContent.textContent = `${name}: ${message}`;
+        newTouitContent.appendChild(likeImg);
         touitContainer.appendChild(nextTouit);
       };
-      addTouit(touit.name, touit.message);
+      addTouit(touit.name, touit.message, touit.likes);
     });
   })
   .catch((error) => {
@@ -72,3 +81,12 @@ btnForm.addEventListener("click", () => {
       console.error("Erreur lors de la requête :", error);
     });
 });
+
+/************************AJOUT DE LIKE*******************************/
+/********************************************************************/
+
+  const likeClick = document.querySelector("#like-btn");
+  const liked = document.querySelector("#nbr-likes");
+
+  console.log(likeClick);
+

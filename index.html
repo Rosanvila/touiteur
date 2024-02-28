@@ -8,9 +8,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="reset.css">
-  <link rel="stylesheet" href="helpers.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/helpers.css">
+  <link rel="stylesheet" href="./css/style.css">
   <link rel="shortcut icon" href="./img/Logo.png">
 </head>
 
@@ -35,12 +35,17 @@
           <textarea id="message" name="message" maxlength="256" required></textarea>
         </div>
 
-        <button id="form-btn" type="button">Envoyer Touit</button>
+        <button id="form-btn" type="submit">Envoyer Touit</button>
       </form>
 
-      <div class="touit-container" id="touit-container">
+      <div class="container touit-container" id="touit-container">
         <template id="touit-template">
           <div class="touit" id="touit">
+            <div id="touit-likes" class="touit-likes">
+              <img src="./img/heart-svgrepo-com.svg" alt="like" id="like-btn" class="like">
+              <img src="./img/dislike-svgrepo-com.svg" alt="dislike" id="dislike-btn" class="like">
+              <p class="nbr-likes" id="nbr-likes"></p>
+            </div>
           </div>
         </template>
       </div>
