@@ -30,8 +30,9 @@ fetch("https://touiteur.cefim-formation.org/list")
       .slice(0, 10);
 
     messagesOrder.forEach((touit) => {
+      const nextTouit = touitTemplate.content.cloneNode(true);
+
       addTouit = (name, message, likes) => {
-        const nextTouit = touitTemplate.content.cloneNode(true);
         const newTouitContent = nextTouit.querySelector(".touit");
         const likeImg = nextTouit.querySelector("#touit-likes");
         const nbrLikes = nextTouit.querySelector("#nbr-likes");
@@ -84,9 +85,3 @@ btnForm.addEventListener("click", () => {
 
 /************************AJOUT DE LIKE*******************************/
 /********************************************************************/
-
-  const likeClick = document.querySelector("#like-btn");
-  const liked = document.querySelector("#nbr-likes");
-
-  console.log(likeClick);
-
