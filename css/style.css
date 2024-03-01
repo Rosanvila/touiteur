@@ -32,6 +32,10 @@ body {
   background-position: center;
 }
 
+.name {
+  text-decoration: underline;
+  font-size: 2rem;
+}
 
 .touiteur-container {
   display: grid;

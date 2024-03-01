@@ -1,53 +1,49 @@
-// const bodyPage = document.querySelector("body");
-// document.addEventListener("DOMContentLoaded", () => {
-//   let today = new Date();
-//   let currentHour = today.getHours();
-
-//   if (currentHour >= 0 && currentHour < 1) {
-//     document.body.style.background = "pink"
-// }
-// else {
-//   document.body.style.background ="grey"
-// }
-// });
+const touitContainer = document.querySelector("#touit-container");
+const touitTemplate = document.querySelector("#touit-template");
+const originalClone = touitTemplate.content.cloneNode(true);
 
 /*********************RECUP DE TOUITT*****************/
-const touitContainer = document.getElementById("touit-container");
-const touitTemplate = document.getElementById("touit-template");
 
-fetch("https://touiteur.cefim-formation.org/list")
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Erreur de réseau !");
-    }
-    return response.json();
-  })
-  .then((data) => {
-    console.log(data);
+function addTouit(touit) {
+  const clonedTouit = originalClone.cloneNode(true);
+  const newTouitContent = clonedTouit.querySelector(".touit");
+  const nbrLike = newTouitContent.querySelector(".nbr-likes");
+  
+  const nameElement = newTouitContent.querySelector("#name");
+  const messageElement = newTouitContent.querySelector("#message");
 
-    const messagesOrder = data.messages
-      .sort((a, b) => b.ts - a.ts)
-      .slice(0, 10);
+  nbrLike.textContent = `${touit.likes}`;
+  nameElement.textContent = `${touit.name}`;
+  messageElement.textContent = `${touit.message}`;
 
-    messagesOrder.forEach((touit) => {
-      const nextTouit = touitTemplate.content.cloneNode(true);
+  touitContainer.appendChild(clonedTouit);
+};
 
-      addTouit = (name, message, likes) => {
-        const newTouitContent = nextTouit.querySelector(".touit");
-        const likeImg = nextTouit.querySelector("#touit-likes");
-        const nbrLikes = nextTouit.querySelector("#nbr-likes");
-        nbrLikes.textContent = `${likes}`;
+function fetchData() {
+  const apiUrl = "https://touiteur.cefim-formation.org/list";
 
-        newTouitContent.textContent = `${name}: ${message}`;
-        newTouitContent.appendChild(likeImg);
-        touitContainer.appendChild(nextTouit);
-      };
-      addTouit(touit.name, touit.message, touit.likes);
+  fetch(apiUrl)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Erreur de requête: ${response.status}`);
+      }
+
+      return response.json();
+    })
+    .then((data) => {
+      const messagesOrder = data.messages
+        .sort((a, b) => b.ts - a.ts)
+        .slice(0, 10);
+      messagesOrder.forEach((touit) => {
+        addTouit(touit);
+        console.log("Données récupérées avec succès");
+      });
+    })
+    .catch((error) => {
+      console.error("Erreur de requête:", error.message);
     });
-  })
-  .catch((error) => {
-    console.error("Erreur !", error);
-  });
+}
+fetchData();
 
 /****************ENVOIE DE TOUIT***************************/
 /*********************************************************/
