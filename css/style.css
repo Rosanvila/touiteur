@@ -118,7 +118,8 @@ button {
   overflow-y: auto;
 }
 
-.like {
+.like-btn,
+.dislike-btn {
   width: 3rem;
   padding-inline: 5px;
   cursor: pointer;

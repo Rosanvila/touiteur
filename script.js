@@ -2,13 +2,15 @@ const touitContainer = document.querySelector("#touit-container");
 const touitTemplate = document.querySelector("#touit-template");
 const originalClone = touitTemplate.content.cloneNode(true);
 
-/*********************RECUP DE TOUITT*****************/
+/*************************RECUP DE TOUITT***************************/
+/*******************************************************************/
 
-function addTouit(touit) {
+addTouit = (touit) => {
   const clonedTouit = originalClone.cloneNode(true);
   const newTouitContent = clonedTouit.querySelector(".touit");
   const nbrLike = newTouitContent.querySelector(".nbr-likes");
-  
+  const likeBtn = newTouitContent.querySelector(".like-btn");
+  const dislikeBtn = newTouitContent.querySelector(".dislike-btn");
   const nameElement = newTouitContent.querySelector("#name");
   const messageElement = newTouitContent.querySelector("#message");
 
@@ -17,9 +19,19 @@ function addTouit(touit) {
   messageElement.textContent = `${touit.message}`;
 
   touitContainer.appendChild(clonedTouit);
+
+  /****        BOUTON DE LIKE     ****/
+  likeBtn.addEventListener("click", () => {
+    sendLike(touit.id);
+  });
+
+  /****        BOUTON DE DISLIKE     ****/
+  dislikeBtn.addEventListener("click", () => {
+    removeLike(touit.id);
+  });
 };
 
-function fetchData() {
+fetchData = () => {
   const apiUrl = "https://touiteur.cefim-formation.org/list";
 
   fetch(apiUrl)
@@ -42,8 +54,73 @@ function fetchData() {
     .catch((error) => {
       console.error("Erreur de requête:", error.message);
     });
-}
+};
 fetchData();
+
+/************************ENVOIE DE LIKE*********************************/
+/*********************************************************************/
+sendLike = (touitId) => {
+  const touitData = new URLSearchParams();
+  touitData.append("message_id", touitId);
+
+  fetch("https://touiteur.cefim-formation.org/likes/send", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: touitData.toString(),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(
+          "Erreur lors de la requête au serveur" + response.status
+        );
+      }
+      console.log(
+        "Like enregistré avec succès pour le touit avec l'ID : " + touitId
+      );
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) => {
+      console.error("Erreur lors de la requête au serveur :", error);
+    });
+};
+
+/************************REMOVE DE LIKE*********************************/
+/*********************************************************************/
+
+removeLike = (touitId) => {
+  const touitData = new URLSearchParams();
+  touitData.append("message_id", touitId);
+
+  fetch("https://touiteur.cefim-formation.org/likes/remove", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: touitData.toString(),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(
+          "Erreur lors de la requête au serveur" + response.status
+        );
+      }
+      console.log(
+        "Like enregistré avec succès pour le touit avec l'ID : " + touitId
+      );
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) => {
+      console.error("Erreur lors de la requête au serveur :", error);
+    });
+};
 
 /****************ENVOIE DE TOUIT***************************/
 /*********************************************************/
@@ -78,6 +155,3 @@ btnForm.addEventListener("click", () => {
       console.error("Erreur lors de la requête :", error);
     });
 });
-
-/************************AJOUT DE LIKE*******************************/
-/********************************************************************/
