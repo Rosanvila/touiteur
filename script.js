@@ -2,8 +2,8 @@ const touitContainer = document.querySelector("#touit-container");
 const touitTemplate = document.querySelector("#touit-template");
 const originalClone = touitTemplate.content.cloneNode(true);
 
-/*************************RECUP DE TOUITT***************************/
-/*******************************************************************/
+/****************RECUP DE TOUITT****************/
+/**********************************************/
 
 addTouit = (touit) => {
   const clonedTouit = originalClone.cloneNode(true);
@@ -57,8 +57,9 @@ fetchData = () => {
 };
 fetchData();
 
-/************************ENVOIE DE LIKE*********************************/
-/*********************************************************************/
+/*************ENVOIE DE LIKE*************/
+/***************************************/
+
 sendLike = (touitId) => {
   const touitData = new URLSearchParams();
   touitData.append("message_id", touitId);
@@ -89,8 +90,8 @@ sendLike = (touitId) => {
     });
 };
 
-/************************REMOVE DE LIKE*********************************/
-/*********************************************************************/
+/*******************REMOVE DE LIKE****************/
+/*************************************************/
 
 removeLike = (touitId) => {
   const touitData = new URLSearchParams();
@@ -122,8 +123,8 @@ removeLike = (touitId) => {
     });
 };
 
-/****************ENVOIE DE TOUIT***************************/
-/*********************************************************/
+/****************ENVOIE DE TOUIT*************/
+/********************************************/
 const nameTouittos = document.querySelector("#name");
 const messageInput = document.querySelector("#message");
 const btnForm = document.querySelector("#form-btn");
@@ -149,9 +150,54 @@ btnForm.addEventListener("click", () => {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
+      console.log("donnée envoyée !", data);
     })
     .catch((error) => {
       console.error("Erreur lors de la requête :", error);
     });
 });
+
+/*******************TRENDING************************/
+
+const templateTrend = document.querySelector("#template-trend");
+const wordsContainer = document.querySelector("#words-container");
+
+const bestTrend = (term, count) => {
+  const trendingWords = templateTrend.content
+    .querySelector(".trending-words")
+    .cloneNode(true);
+
+  trendingWords.textContent = `${term} [${count}]`;
+  trendingWords.classList.add("words");
+
+  wordsContainer.appendChild(trendingWords);
+};
+
+const fetchTrend = () => {
+  const apiUrl = "https://touiteur.cefim-formation.org/trending";
+
+  fetch(apiUrl)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Erreur de requête: ${response.status}`);
+      }
+
+      return response.json();
+    })
+    .then((data) => {
+      const trendData = Object.entries(data)
+        .sort((a, b) => b[1] - a[1])
+        .slice(1, 10);
+
+      trendData.forEach(([term, count]) => {
+        bestTrend(term, count);
+      });
+
+      console.log("Données récupérées avec succès", data);
+    })
+    .catch((error) => {
+      console.error("Erreur de requête:", error.message);
+    });
+};
+
+fetchTrend();

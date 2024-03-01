@@ -25,38 +25,48 @@
     </div>
   </header>
   <main id=main-content>
-    <div class="container touiteur-container">
-      <form id="touit-form">
-        <div class="name-form"> <label for="name">name:</label>
-          <input type="text" id="name" name="name" maxlength="16" required>
-        </div>
-
-        <div class="message-form"> <label for="message">Message:</label>
-          <textarea id="message" name="message" maxlength="256" required></textarea>
-        </div>
-
-        <button id="form-btn" type="submit">Envoyer Touit</button>
-      </form>
-
-      <div class="container touit-container" id="touit-container">
-        <template id="touit-template">
-          <div class="touit" id="touit">
-            <div id="touit-img" class="touit-img">
-              <p class="name" id="name"></p>
-              <p class="message" id="message"></p>
-              <button id="like-btn" class="like-btn">
-                <img src="./img/heart-svgrepo-com.svg" alt="like">
-              </button>
-              <button id="dislike-btn" class="dislike-btn">
-                <img src="./img/dislike-svgrepo-com.svg" alt="dislike">
-              </button>
-              <p class="nbr-likes" id="nbr-likes"></p>
-            </div>
+    <section>
+      <div class="container touiteur-container">
+        <form id="touit-form">
+          <div class="name-form"> <label for="name">name:</label>
+            <input type="text" id="name" name="name" maxlength="16" required>
           </div>
-        </template>
 
+          <div class="message-form"> <label for="message">Message:</label>
+            <textarea id="message" name="message" maxlength="256" required></textarea>
+          </div>
+
+          <button id="form-btn" type="submit">Envoyer Touit</button>
+        </form>
+        <div class="container touit-container" id="touit-container">
+          <template id="touit-template">
+            <div class="touit" id="touit">
+              <div id="touit-img" class="touit-img">
+                <p class="name" id="name"></p>
+                <p class="message" id="message"></p>
+                <button id="like-btn" class="like-btn">
+                  <img src="./img/heart-svgrepo-com.svg" alt="like">
+                </button>
+                <button id="dislike-btn" class="dislike-btn">
+                  <img src="./img/dislike-svgrepo-com.svg" alt="dislike">
+                </button>
+                <p class="nbr-likes" id="nbr-likes"></p>
+              </div>
+            </div>
+          </template>
+    </section>
+
+    <section>
+      <div class="container trending-container" id="trending-container">
+        <h2 id="tendance">Tendance !</h2>
+        <div class="words-container" id="words-container">
+          <template id="template-trend">
+            <p class="trending-words" id="trending-words"></p>
+          </template>
+        </div>
       </div>
-    </div>
+    </section>
+
   </main>
   <script src="script.js"></script>
 </body>
