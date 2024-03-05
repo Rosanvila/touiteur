@@ -112,11 +112,22 @@ button {
 .touit-container {
   max-height: 500px;
   min-height: 200px;
-  width: 30rem;
+  width: 40rem;
   gap: 20px;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.avatar {
+  width: 50px;
+}
+
+.touit-info {
+  display: flex;
+  justify-content: flex-start;
+  gap: 30px;
 }
 
 .like-btn,
@@ -161,7 +172,7 @@ button {
 h2 {
   font-family: "Pixelify Sans", sans-serif;
   font-weight: 700;
-  font-size: 3rem;
+  font-size: 2.5rem;
   color: whitesmoke;
   background-color: black;
   text-align: center;
@@ -180,7 +191,7 @@ h2 {
   background-color: yellow;
   color: black;
   border-radius: 25%;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
   padding: 10px;

@@ -36,14 +36,17 @@
             <textarea id="message" name="message" maxlength="256" required></textarea>
           </div>
 
-          <button id="form-btn" type="submit">Envoyer Touit</button>
+          <button id="form-btn" type="button">Envoyer Touit</button>
         </form>
         <div class="container touit-container" id="touit-container">
           <template id="touit-template">
             <div class="touit" id="touit">
-              <div id="touit-img" class="touit-img">
+              <div class="touit-info" id="touit-info">
+                <img src="" alt="" id="avatar" class="avatar">
                 <p class="name" id="name"></p>
                 <p class="message" id="message"></p>
+              </div>
+              <div id="touit-img" class="touit-img">
                 <button id="like-btn" class="like-btn">
                   <img src="./img/heart-svgrepo-com.svg" alt="like">
                 </button>
@@ -58,6 +61,24 @@
 
     <section>
       <div class="container trending-container" id="trending-container">
+        <template id="top-touit-template">
+          <div class="touit" id="top-touit">
+            <div class="touit-info" id="top-touit-info">
+              <img src="" alt="" id="avatar" class="avatar">
+              <p class="name" id="top-name"></p>
+              <p class="message" id="top-message"></p>
+            </div>
+            <div id="top-touit-img" class="touit-img">
+              <button id="like-btn" class="like-btn">
+                <img src="./img/heart-svgrepo-com.svg" alt="like">
+              </button>
+              <button id="dislike-btn" class="dislike-btn">
+                <img src="./img/dislike-svgrepo-com.svg" alt="dislike">
+              </button>
+              <p class="nbr-likes" id="top-nbr-likes"></p>
+            </div>
+          </div>
+        </template>
         <h2 id="tendance">Tendance !</h2>
         <div class="words-container" id="words-container">
           <template id="template-trend">
@@ -66,7 +87,6 @@
         </div>
       </div>
     </section>
-
   </main>
   <script src="script.js"></script>
 </body>
