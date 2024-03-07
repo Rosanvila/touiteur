@@ -1,8 +1,8 @@
 function myHours() {
-  const maintenant = new Date();
-  const heures = maintenant.getHours();
-  const minutes = maintenant.getMinutes();
-  const secondes = maintenant.getSeconds();
+  const actually = new Date();
+  const heures = actually.getHours();
+  const minutes = actually.getMinutes();
+  const secondes = actually.getSeconds();
 
   const secondesRestantes =
     24 * 60 * 60 - (heures * 60 * 60 + minutes * 60 + secondes);
