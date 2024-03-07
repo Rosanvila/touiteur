@@ -5,7 +5,7 @@ const originalClone = touitTemplate.content.cloneNode(true);
 /****************RECUP DE TOUITT****************/
 /**********************************************/
 
-addTouit = (touit) => {
+createTouitElement = (touit) => {
   const clonedTouit = originalClone.cloneNode(true);
   const newTouitContent = clonedTouit.querySelector(".touit");
   const nbrLike = newTouitContent.querySelector(".nbr-likes");
@@ -20,19 +20,22 @@ addTouit = (touit) => {
 
   nbrLike.textContent = `${touit.likes}`;
   nameElement.textContent = `${touit.name}`;
-
   messageElement.textContent = `${touit.message}`;
-  touitContainer.appendChild(clonedTouit);
 
-  /****        BOUTON DE LIKE     ****/
   likeBtn.addEventListener("click", () => {
     sendLike(touit.id);
   });
 
-  /****        BOUTON DE DISLIKE     ****/
   dislikeBtn.addEventListener("click", () => {
     removeLike(touit.id);
   });
+
+  return clonedTouit;
+};
+
+addTouit = (touit) => {
+  const touitElement = createTouitElement(touit);
+  touitContainer.appendChild(touitElement);
 };
 
 fetchData = () => {
@@ -51,11 +54,11 @@ fetchData = () => {
         .sort((a, b) => b.ts - a.ts)
         .slice(0, 10);
 
-      touitContainer.textContent = "";
+      touitContainer.innerHTML = "";
 
       messagesOrder.forEach((touit) => {
         addTouit(touit);
-        console.log("Données récupérées avec succès");
+        console.log("Touits récupérées avec succès");
       });
     })
     .catch((error) => {
@@ -138,7 +141,7 @@ const nameTouittos = document.querySelector("#name");
 const messageInput = document.querySelector("#message");
 const btnForm = document.querySelector("#form-btn");
 
-btnForm.addEventListener("click", () => {
+sendTouit = () => {
   const userName = nameTouittos.value + " ";
   const newMessage = messageInput.value;
 
@@ -164,14 +167,16 @@ btnForm.addEventListener("click", () => {
     .catch((error) => {
       console.error("Erreur lors de la requête :", error);
     });
-});
+};
+
+btnForm.addEventListener("click", sendTouit);
 
 /*******************TRENDING************************/
 
 const templateTrend = document.querySelector("#template-trend");
 const wordsContainer = document.querySelector("#words-container");
 
-bestTrend = (term, count) => {
+const bestTrend = (term, count) => {
   const trendingWords = templateTrend.content
     .querySelector(".trending-words")
     .cloneNode(true);
@@ -182,7 +187,7 @@ bestTrend = (term, count) => {
   wordsContainer.appendChild(trendingWords);
 };
 
-const fetchTrend = () => {
+fetchTrend = () => {
   const apiUrl = "https://touiteur.cefim-formation.org/trending";
 
   fetch(apiUrl)
@@ -217,23 +222,6 @@ fetchTrend();
 const topTouitTemplate = document.querySelector("#top-touit-template");
 const trendingContent = document.querySelector("#trending-container");
 
-fetch("https://touiteur.cefim-formation.org/likes/top")
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(`Erreur de requête: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then((data) => {
-    const touitTop = data.top[0];
-    if (touitTop) {
-      topTouitTrend(touitTop);
-      console.log("top Touit récupéré avec succès", touitTop);
-    } else {
-      console.error("Aucun touit trouvé dans les données.");
-    }
-  });
-
 topTouitTrend = (top) => {
   const clonedTopTouit = topTouitTemplate.content.cloneNode(true);
   const newTouitContent = clonedTopTouit.querySelector("#top-touit");
@@ -251,15 +239,30 @@ topTouitTrend = (top) => {
   nameElement.textContent = `${top.name}`;
   messageElement.textContent = `${top.message}`;
 
-  trendingContent.appendChild(clonedTopTouit);
-
-  /****        BOUTON DE LIKE     ****/
   likeBtn.addEventListener("click", () => {
     sendLike(top.id);
   });
 
-  /****        BOUTON DE DISLIKE     ****/
   dislikeBtn.addEventListener("click", () => {
     removeLike(top.id);
   });
+
+  trendingContent.appendChild(clonedTopTouit);
 };
+
+fetch("https://touiteur.cefim-formation.org/likes/top")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`Erreur de requête: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    const touitTop = data.top[0];
+    if (touitTop) {
+      topTouitTrend(touitTop);
+      console.log("top Touit récupéré avec succès", touitTop);
+    } else {
+      console.error("Aucun touit trouvé dans les données.");
+    }
+  });
