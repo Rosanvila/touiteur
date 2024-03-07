@@ -27,6 +27,7 @@ h1 img {
 }
 
 body {
+  position: relative;
   background-image: url(../img/Plan_de-travail\ 1.jpg);
   background-size: cover;
   background-position: center;
@@ -52,6 +53,10 @@ form {
   row-gap: 30px;
   height: 50vh;
   font-family: "Pixelify Sans", sans-serif;
+}
+
+form button {
+  animation: wiggle 1s ease-in-out infinite;
 }
 
 .name-form {
@@ -110,9 +115,9 @@ button {
 }
 
 .touit-container {
-  max-height: 500px;
+  max-height: 400px;
   min-height: 200px;
-  width: 40rem;
+  width: 30rem;
   gap: 20px;
   display: flex;
   flex-direction: column;
@@ -121,11 +126,14 @@ button {
 }
 
 .avatar {
-  width: 50px;
+  display: block;
+  max-width: 100%;
+  width: 5rem;
 }
 
 .touit-info {
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-start;
   gap: 30px;
 }
@@ -140,11 +148,13 @@ button {
 }
 
 .like-btn img:hover {
-  filter: invert(100%) sepia(96%) saturate(6549%) hue-rotate(357deg) brightness(92%) contrast(120%);
+  filter: invert(100%) sepia(96%) saturate(6549%) hue-rotate(357deg)
+    brightness(92%) contrast(120%);
 }
 
 .dislike-btn img:hover {
-  filter: invert(100%) sepia(96%) saturate(6549%) hue-rotate(357deg) brightness(92%) contrast(120%);
+  filter: invert(100%) sepia(96%) saturate(6549%) hue-rotate(357deg)
+    brightness(92%) contrast(120%);
 }
 
 .touit-likes {
@@ -156,7 +166,7 @@ button {
   display: flex;
   flex-direction: column;
   font-family: "Pixelify Sans", sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: white;
   border: 2px solid whitesmoke;
   background-color: rgba(25, 25, 25);
@@ -191,9 +201,37 @@ h2 {
   background-color: yellow;
   color: black;
   border-radius: 25%;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;
   padding: 10px;
   border: 2px red solid;
 }
+
+/************heure local*************/
+
+.heure-actuelle {
+  position: absolute;
+  top: 420px;
+  left: 440px;
+  border: 2px solid whitesmoke;
+  border-radius: 40px 40px 40px 0px;
+  width: 20rem;
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: whitesmoke;
+  background-color: rgba(25, 25, 25, 0.8);
+  text-align: center;
+  opacity: 0;
+}
+
+@keyframes wiggle {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  50% { transform: rotate(-5deg); }
+  75% { transform: rotate(5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+

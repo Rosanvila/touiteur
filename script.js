@@ -201,7 +201,7 @@ fetchTrend = () => {
     .then((data) => {
       const trendData = Object.entries(data)
         .sort((a, b) => b[1] - a[1])
-        .slice(0, 8);
+        .slice(0, 10);
 
       trendData.forEach(([term, count]) => {
         bestTrend(term, count);
