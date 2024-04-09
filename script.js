@@ -15,7 +15,7 @@ createTouitElement = (touit) => {
 
   const avatar = clonedTouit.querySelector("#avatar");
   avatar.src =
-    "https://touiteur.cefim-formation.org/avatar/get?username=" + touit.name;
+    "https://API-link.org/avatar/get?username=" + touit.name;
 
   nbrLike.textContent = `${touit.likes}`;
   nameElement.textContent = `${touit.name}`;
@@ -38,7 +38,7 @@ addTouit = (touit) => {
 };
 
 fetchData = () => {
-  const apiUrl = "https://touiteur.cefim-formation.org/list";
+  const apiUrl = "https:///API-link.org/list";
 
   fetch(apiUrl)
     .then((response) => {
@@ -75,7 +75,7 @@ sendLike = (touitId) => {
   const touitData = new URLSearchParams();
   touitData.append("message_id", touitId);
 
-  fetch("https://touiteur.cefim-formation.org/likes/send", {
+  fetch("https:///API-link.org/likes/send", {
     method: "PUT",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -108,7 +108,7 @@ removeLike = (touitId) => {
   const touitData = new URLSearchParams();
   touitData.append("message_id", touitId);
 
-  fetch("https://touiteur.cefim-formation.org/likes/remove", {
+  fetch("https:///API-link.org/likes/remove", {
     method: "DELETE",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -144,7 +144,7 @@ sendTouit = () => {
   const userName = nameTouittos.value + " ";
   const newMessage = messageInput.value;
 
-  fetch("https://touiteur.cefim-formation.org/send", {
+  fetch("https:///API-link.org/send", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -187,7 +187,7 @@ const bestTrend = (term, count) => {
 };
 
 fetchTrend = () => {
-  const apiUrl = "https://touiteur.cefim-formation.org/trending";
+  const apiUrl = "https:/API-link.org/trending";
 
   fetch(apiUrl)
     .then((response) => {
@@ -232,7 +232,7 @@ topTouitTrend = (top) => {
 
   const avatar = newTouitContent.querySelector("#avatar");
   avatar.src =
-    "https://touiteur.cefim-formation.org/avatar/get?username=" + top.name;
+    "https:///API-link.org/avatar/get?username=" + top.name;
 
   nbrLike.textContent = `${top.likes}`;
   nameElement.textContent = `${top.name}`;
@@ -249,7 +249,7 @@ topTouitTrend = (top) => {
   trendingContent.appendChild(clonedTopTouit);
 };
 
-fetch("https://touiteur.cefim-formation.org/likes/top")
+fetch("https:///API-link.org/likes/top")
   .then((response) => {
     if (!response.ok) {
       throw new Error(`Erreur de requête: ${response.status}`);
