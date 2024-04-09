@@ -216,7 +216,7 @@ fetchTrend = () => {
 fetchTrend();
 
 /********************TOP TOUIT**********************/
-/***************************************************/
+/**************************************************/
 
 const topTouitTemplate = document.querySelector("#top-touit-template");
 const trendingContent = document.querySelector("#trending-container");
@@ -246,7 +246,7 @@ topTouitTrend = (top) => {
     removeLike(top.id);
   });
 
-  trendingContent.appendChild(clonedTopTouit);
+  trendingContent.appendChild(clonedTopTouit)
 };
 
 fetch("https:///API-link.org/likes/top")
