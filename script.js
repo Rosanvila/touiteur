@@ -7,14 +7,13 @@ const originalClone = touitTemplate.content.cloneNode(true);
 
 createTouitElement = (touit) => {
   const clonedTouit = originalClone.cloneNode(true);
-  const newTouitContent = clonedTouit.querySelector(".touit");
-  const nbrLike = newTouitContent.querySelector(".nbr-likes");
-  const likeBtn = newTouitContent.querySelector(".like-btn");
-  const dislikeBtn = newTouitContent.querySelector(".dislike-btn");
-  const nameElement = newTouitContent.querySelector("#name");
-  const messageElement = newTouitContent.querySelector("#message");
+  const nbrLike = clonedTouit.querySelector(".nbr-likes");
+  const likeBtn = clonedTouit.querySelector(".like-btn");
+  const dislikeBtn = clonedTouit.querySelector(".dislike-btn");
+  const nameElement = clonedTouit.querySelector("#name");
+  const messageElement = clonedTouit.querySelector("#message");
 
-  const avatar = newTouitContent.querySelector("#avatar");
+  const avatar = clonedTouit.querySelector("#avatar");
   avatar.src =
     "https://touiteur.cefim-formation.org/avatar/get?username=" + touit.name;
 
